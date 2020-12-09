@@ -7,7 +7,8 @@ const userSchema = new Schema({
   age: String,
   country: String,
   city: String,
-  image: String
+  image: String,
+  cars: {type: Schema.Types.ObjectId, ref: 'Car'}
 }, 
 {
   timestamps: {
@@ -18,16 +19,5 @@ const userSchema = new Schema({
 
 const User = mongoose.model('User', userSchema);
 
-// createUser = async () => {
-//   const username = "Alberto"
-//   const password = "1234"
-//   const age = "33"
-//   const country = "España"
-//   const city = "Terrassa"
 
-//   await User.create({ username, password, age, country, city})
-//   console.log("userrrrrr", username, password, age, country, city)
-// }
-
-//createUser()
 module.exports = User;
