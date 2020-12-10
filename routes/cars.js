@@ -69,6 +69,21 @@ router.get("/garage/:id", async (req, res, next) => {
     }
 });
 
+router.delete('/:id/delete', async (req,res, next) => {
+    const { id } = req.params
+    // if(!ObjectId.isValid(id)) {
+    //     return res.status(400).send({ message: 'Specified id is not valid' });
+        
+    // }
+    
+    try {
+        const deleted = await Car.findByIdAndRemove(id)
+        return res.status(200).json(deleted)
+    }
+    catch(err) {
+        res.status(400).send({message: "Unable to delete"})
+    }
+  });
 
 // router.get("/cardetail/:id", async (req, res, next) => {
     
