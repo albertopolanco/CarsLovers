@@ -40,6 +40,19 @@ router.put("/:id/edituser", (req, res, next) =>{
         });
 });
 
+router.get("/:id", (req, res, next) => {
+    User.findById (
+       {_id:req.params.id}
+
+    )
+    .then((edit) => {
+        res.status(200).json(edit)
+    })
+    .catch((error) => {
+        console.log(error);
+    });
+})
+
 
 
 // router.get("/:id", async (req, res, next) => {

@@ -85,6 +85,19 @@ router.delete('/:id/delete', async (req,res, next) => {
     }
   });
 
+  router.get("/:id", (req, res, next) => {
+    Car.findById (
+       {_id:req.params.id}
+
+    )
+    .then((edit) => {
+        res.status(200).json(edit)
+    })
+    .catch((error) => {
+        console.log(error);
+    });
+})
+
 // router.get("/cardetail/:id", async (req, res, next) => {
     
 //     let myCarDetail = await Car.find({owner: req.params.id});
