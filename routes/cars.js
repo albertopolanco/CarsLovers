@@ -38,7 +38,9 @@ router.put("/:id/editcar", (req, res, next) => {
 //CREAR EL MODELO CAR
 
 router.post("/:id/createcar", async (req, res, next) => {
+    // console.log(req.body, "99999999999")
     try {
+        // console.log(req.body, "99999999999")
         const newCar = await Car.create({
            brand: req.body.brand,
            model: req.body.model,
@@ -50,6 +52,7 @@ router.post("/:id/createcar", async (req, res, next) => {
            image: req.body.image,
            owner: req.params.id 
         })
+        res.json(newCar)
     } catch (error) {
         console.log(error)
     }
