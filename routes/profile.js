@@ -4,6 +4,9 @@ const createError = require("http-errors");
 const User = require("../models/user");
 const Car = require("../models/car");
 const mongoose = require("mongoose");
+const uploadCloud = require('../configs/cloudinary-setup');
+const cloudinaryStorage = require('multer-storage-cloudinary');
+const multer = require('multer'); 
 
 
 router.get("/:id", async (req, res, next) => {
@@ -52,20 +55,6 @@ router.get("/:id", (req, res, next) => {
         console.log(error);
     });
 })
-
-
-
-// router.get("/:id", async (req, res, next) => {
-    
-//     let myUser = await User.findById(req.params.id);
-//     try{
-//         res.json(myUser)
-//     } catch(error) {
-//         console.log(error);
-//     }
-// });
-
-
 
 
 module.exports = router;

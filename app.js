@@ -13,6 +13,7 @@ const cors = require("cors");
 const auth = require("./routes/auth");
 const profile = require("./routes/profile");
 const cars = require("./routes/cars");
+const upload = require("./routes/file-upload-routes");
 
 // MONGOOSE CONNECTION
 mongoose
@@ -69,8 +70,7 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use("/auth", auth);
 app.use("/profile", profile);
 app.use("/cars", cars);
-// app.use("/")
-// app.use("/upload", upload);
+app.use("/upload", upload);
 
 //ROUTER FOR SERVING REACT APP (index.html)
 app.use((req, res) => {
