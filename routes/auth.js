@@ -16,10 +16,6 @@ const {
 
 router.post(
   "/signup",
-  // revisamos si el user no está ya logueado usando la función helper (chequeamos si existe req.session.currentUser)
-  // isNotLoggedIn(),
-  // revisa que se hayan completado los valores de username y password usando la función helper
-  // validationLoggin(),
   async (req, res, next) => {
     const { username, password } = req.body;
 
