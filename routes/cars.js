@@ -76,15 +76,7 @@ router.delete("/:id/delete", async (req, res, next) => {
   }
 });
 
-router.get("/:id", (req, res, next) => {
-  Car.findById({ _id: req.params.id })
-    .then((edit) => {
-      res.status(200).json(edit);
-    })
-    .catch((error) => {
-      console.log(error);
-    });
-});
+
 
 router.get("/cardetail/:id", (req, res, next) => {
   if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
@@ -102,4 +94,44 @@ router.get("/cardetail/:id", (req, res, next) => {
     });
 });
 
+router.get("/cardetailsusers/:id", (req, res, next) => {
+  if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
+    res.status(400).json({ message: "Specified id is not valid" });
+    return;
+  }
+
+  Car.findById(req.params.id)
+    .populate("car")
+    .then((response) => {
+      res.status(200).json(response);
+    })
+    .catch((err) => {
+      res.json(err);
+    });
+});
+
+
+// Ruta para ver todos los coches
+
+router.get("/allcars", async (req, res, next) => {
+  let allCars = await Car.find().populate("owner") 
+ /*  let userName = await User.find() */
+   
+    try  {
+      res.json(allCars);
+    }
+    catch(err){
+      res.json(err);
+    }
+});
+
+router.get("/:id", (req, res, next) => {
+  Car.findById({ _id: req.params.id })
+    .then((edit) => {
+      res.status(200).json(edit);
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+});
 module.exports = router;
